@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nivvi | You are on the list</title>
+    <meta name="description" content="Your waitlist request has been received." />
+    <meta name="theme-color" content="#2A857C" />
+    <link rel="icon" type="image/png" href="/static/brand/icon.png?v=20260305c" />
+
+    <link rel="stylesheet" href="/static/fonts/fonts.css?v=20260312a" />
+    <script src="/static/vendor/tailwindcss-browser-4.js?v=20260312a"></script>
+
+    <style type="text/tailwindcss">
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      .heading-font {
+        font-family: "Space Grotesk", "Inter", sans-serif;
+      }
+
+      .protected-asset {
+        -webkit-user-drag: none;
+        -webkit-touch-callout: none;
+        user-select: none;
+      }
+
+      .protected-image {
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#F7F8F8] text-slate-900">
+    <div class="min-h-screen">
+      <header class="sticky top-0 z-[100] bg-white/80 backdrop-blur-2xl border-b border-slate-100 px-12">
+        <div class="max-w-[1440px] mx-auto h-24 flex justify-center items-center">
+          <div class="flex items-center protected-asset" data-protected-asset="navbar-brand">
+            <img
+              src="/static/brand/logo.png?v=20260305c"
+              class="protected-image h-10 w-auto object-contain"
+              alt="Nivvi"
+              data-protected-asset="navbar-logo"
+              draggable="false"
+            />
+          </div>
+        </div>
+      </header>
+
+      <main class="px-6 py-16 md:px-12 md:py-24">
+        <section class="mx-auto max-w-[780px]">
+          <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-black text-white">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h1 id="success-title" class="heading-font mt-8 text-5xl font-bold tracking-tight text-slate-900 md:text-7xl">
+            You&apos;re on the list
+          </h1>
+          <p id="success-body" class="mt-4 max-w-xl text-lg leading-relaxed text-slate-500 md:text-2xl">
+            Thanks for joining. We&apos;ll be in touch soon with early access details.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="/"
+              class="inline-flex items-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white transition hover:opacity-90"
+            >
+              Back to home
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (function applyStatusMessage() {
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
+        const title = document.getElementById('success-title');
+        const body = document.getElementById('success-body');
+        if (!title || !body) return;
+
+        if (status === 'already_exists') {
+          title.textContent = 'You are already on the list';
+          body.textContent = "You're already signed up. We'll keep you posted with launch updates.";
+        }
+      })();
+    </script>
+  </body>
+</html>

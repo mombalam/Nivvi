@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+
+# Local runtime/logs
+server.log
+*.log
+
+# Build/cache
+.mypy_cache/
+.ruff_cache/
+
+# Editor
+.vscode/
+.idea/

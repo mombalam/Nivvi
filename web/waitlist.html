@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nivvi | Waitlist</title>
+    <meta
+      name="description"
+      content="Join Nivvi early access. Submit your details to get invited as new cohorts open."
+    />
+    <meta name="theme-color" content="#2A857C" />
+    <link rel="canonical" href="/waitlist" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nivvi | Get early access" />
+    <meta
+      property="og:description"
+      content="Join the waitlist for Nivvi and get invited as cohorts open."
+    />
+    <meta property="og:image" content="/static/brand/logo.png?v=20260305c" />
+    <meta property="og:image:type" content="image/png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nivvi | Get early access" />
+    <meta
+      name="twitter:description"
+      content="Request early access to Nivvi and get launch updates."
+    />
+    <meta name="twitter:image" content="/static/brand/logo.png?v=20260305c" />
+    <link rel="icon" type="image/png" href="/static/brand/icon.png?v=20260305c" />
+
+    <link rel="stylesheet" href="/static/fonts/fonts.css?v=20260312a" />
+    <script src="/static/vendor/tailwindcss-browser-4.js?v=20260312a"></script>
+
+    <style type="text/tailwindcss">
+      :root {
+        --brand: #2a857c;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      .heading-font {
+        font-family: "Space Grotesk", "Inter", sans-serif;
+      }
+
+      .form-message {
+        min-height: 1.25rem;
+      }
+
+      .form-message.success {
+        color: #166534;
+      }
+
+      .form-message.error {
+        color: #b91c1c;
+      }
+
+      .protected-asset {
+        -webkit-user-drag: none;
+        -webkit-touch-callout: none;
+        user-select: none;
+      }
+
+      .protected-image {
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body data-page="waitlist" class="min-h-screen bg-[#F7F8F8] text-slate-900">
+    <div class="min-h-screen">
+      <header class="sticky top-0 z-[100] bg-white/80 backdrop-blur-2xl border-b border-slate-100 px-12">
+        <div class="max-w-[1440px] mx-auto h-24 flex justify-center items-center">
+          <div class="flex items-center">
+            <div class="flex items-center protected-asset" data-protected-asset="navbar-brand">
+              <img
+                src="/static/brand/logo.png?v=20260305c"
+                class="protected-image h-10 w-auto object-contain"
+                alt="Nivvi"
+                data-protected-asset="navbar-logo"
+                draggable="false"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="px-6 py-14 md:px-12 md:py-20">
+        <section class="mx-auto max-w-[780px]">
+          <h1 class="heading-font text-5xl font-bold tracking-tight text-slate-900 md:text-7xl">Get early access</h1>
+          <p class="mt-4 text-lg text-slate-500 md:text-xl">Join the Nivvi waitlist.</p>
+
+          <form
+            class="waitlist-form mt-10 space-y-5"
+            data-source="waitlist_page"
+            data-success-redirect="/waitlist/success"
+            novalidate
+          >
+            <div>
+              <label for="waitlist_full_name" class="mb-2 block text-[15px] font-semibold text-slate-800">Name</label>
+              <input
+                id="waitlist_full_name"
+                type="text"
+                name="full_name"
+                maxlength="160"
+                required
+                placeholder="Your full name"
+                class="w-full rounded-3xl border border-slate-200 bg-[#EFEFEF] px-6 py-4 text-[30px] text-base text-slate-900 outline-none transition focus:border-[var(--brand)] focus:bg-white focus:ring-2 focus:ring-[var(--brand)]/20"
+              />
+              <input id="waitlist_first_name_shadow" type="hidden" name="first_name" value="" />
+            </div>
+
+            <div>
+              <label for="waitlist_email" class="mb-2 block text-[15px] font-semibold text-slate-800">Email</label>
+              <input
+                id="waitlist_email"
+                type="email"
+                name="email"
+                maxlength="254"
+                required
+                placeholder="you@example.com"
+                class="w-full rounded-3xl border border-slate-200 bg-[#EFEFEF] px-6 py-4 text-[30px] text-base text-slate-900 outline-none transition focus:border-[var(--brand)] focus:bg-white focus:ring-2 focus:ring-[var(--brand)]/20"
+              />
+            </div>
+
+            <div>
+              <label for="waitlist_phone_number" class="mb-2 block text-[15px] font-semibold text-slate-800">
+                Phone number
+                <span class="ml-1 text-slate-400 font-medium">Optional</span>
+              </label>
+              <input
+                id="waitlist_phone_number"
+                type="tel"
+                name="phone_number"
+                maxlength="32"
+                placeholder="+00 000 000 000"
+                class="w-full rounded-3xl border border-slate-200 bg-[#EFEFEF] px-6 py-4 text-[30px] text-base text-slate-900 outline-none transition focus:border-[var(--brand)] focus:bg-white focus:ring-2 focus:ring-[var(--brand)]/20"
+              />
+            </div>
+
+            <label class="flex items-start gap-3 rounded-2xl bg-white/70 px-4 py-3 text-sm text-slate-600" for="waitlist_marketing_consent">
+              <input id="waitlist_marketing_consent" name="marketing_consent" type="checkbox" required class="mt-1" />
+              <span>
+                I agree to receive launch updates and accept
+                <a href="/legal/privacy" class="font-semibold text-[var(--brand)]">Privacy</a>
+                and
+                <a href="/legal/terms" class="font-semibold text-[var(--brand)]">Terms</a>.
+              </span>
+            </label>
+
+            <button
+              class="mt-2 rounded-full bg-black px-8 py-4 text-lg font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
+              type="submit"
+              data-default-label="Get early access"
+            >
+              Get early access
+            </button>
+
+            <p class="form-message text-sm" aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (() => {
+        const fullNameInput = document.querySelector('input[name="full_name"]');
+        const firstNameShadow = document.querySelector('input[name="first_name"]');
+        if (!fullNameInput || !firstNameShadow) return;
+
+        const syncFirstName = () => {
+          const normalized = fullNameInput.value.trim().replace(/\s+/g, " ");
+          if (!normalized) {
+            firstNameShadow.value = "";
+            return;
+          }
+          const [first = ""] = normalized.split(" ");
+          firstNameShadow.value = first;
+        };
+
+        fullNameInput.addEventListener("input", syncFirstName);
+        fullNameInput.addEventListener("change", syncFirstName);
+        const form = fullNameInput.closest("form");
+        if (form) form.addEventListener("submit", syncFirstName);
+        syncFirstName();
+      })();
+    </script>
+    <script src="/static/landing.js?v=20260311c" type="module"></script>
+  </body>
+</html>

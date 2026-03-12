@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nivvi Companion App</title>
+    <link rel="stylesheet" href="/static/fonts/fonts.css?v=20260312a" />
+    <link rel="stylesheet" href="/static/styles.css?v=20260308c" />
+  </head>
+  <body>
+    <div class="ambient"></div>
+
+    <main class="mobile-shell">
+      <header class="app-header">
+        <div class="brand-wrap">
+          <img src="/static/brand/logo.png" alt="Nivvi" class="brand-logo" draggable="false" />
+          <p class="eyebrow">Supervised AI money manager</p>
+        </div>
+        <button id="settingsToggle" class="icon-btn" type="button" aria-label="Open settings">⚙</button>
+      </header>
+
+      <section class="hero-card">
+        <p class="hero-kicker">Companion app</p>
+        <h1>You approve every move. Nivvi handles execution.</h1>
+        <p class="hero-copy">Whole-money visibility, prioritized actions, and end-to-end traceability in one place.</p>
+      </section>
+
+      <section id="settingsPanel" class="settings-panel hidden" aria-live="polite">
+        <form id="settingsForm" class="stack-form">
+          <label>
+            Household ID
+            <input id="householdId" name="householdId" type="text" placeholder="primary_household" />
+          </label>
+          <label>
+            API token (optional)
+            <input id="apiToken" name="apiToken" type="password" placeholder="nvk_..." autocomplete="off" />
+          </label>
+          <div class="inline-actions">
+            <button type="submit">Save & Refresh</button>
+            <button id="clearTokenBtn" type="button" class="ghost">Clear token</button>
+          </div>
+          <p class="helper">Use token when auth is enabled for your beta household.</p>
+        </form>
+      </section>
+
+      <section class="status-strip" id="statusStrip">
+        <article>
+          <p>Alerts</p>
+          <h2 id="statAlerts">0</h2>
+        </article>
+        <article>
+          <p>Pending</p>
+          <h2 id="statPending">0</h2>
+        </article>
+        <article>
+          <p>Interventions</p>
+          <h2 id="statInterventions">0</h2>
+        </article>
+        <article>
+          <p>Overdue</p>
+          <h2 id="statOverdue">0</h2>
+        </article>
+      </section>
+
+      <section class="panel-stack">
+        <section class="panel active" id="panel-today" data-tab="today">
+          <div class="panel-head">
+            <h3>Today</h3>
+            <p>What needs attention now across cashflow, deadlines, and active opportunities.</p>
+          </div>
+          <div id="todayAlerts" class="list-grid"></div>
+
+          <div class="panel-subhead">
+            <h4>Chat channels</h4>
+            <p>Receive interventions in WhatsApp or Telegram and reply naturally.</p>
+          </div>
+          <form id="channelLinkForm" class="stack-form compact">
+            <label>
+              Channel
+              <select name="channel">
+                <option value="whatsapp" selected>WhatsApp</option>
+                <option value="telegram">Telegram</option>
+              </select>
+            </label>
+            <label>
+              Handle
+              <input type="text" name="userHandle" placeholder="+31... or @username" />
+            </label>
+            <button type="submit">Link channel</button>
+          </form>
+          <div id="channelList" class="list-grid"></div>
+
+          <form id="chatForm" class="stack-form compact">
+            <label>
+              Ask Nivvi
+              <input type="text" name="message" placeholder="What should I prioritize this week?" />
+            </label>
+            <button type="submit">Send to Nivvi</button>
+          </form>
+          <div id="todayInterventions" class="list-grid"></div>
+        </section>
+
+        <section class="panel" id="panel-actions" data-tab="actions">
+          <div class="panel-head">
+            <h3>Action center</h3>
+            <p>Review impact, confirm, authorize, and dispatch.</p>
+          </div>
+
+          <form id="actionDraftForm" class="stack-form compact">
+            <label>
+              Draft type
+              <select name="actionType">
+                <option value="transfer" selected>Transfer</option>
+                <option value="invest">Invest</option>
+                <option value="tax_submission">Tax submission</option>
+              </select>
+            </label>
+            <label>
+              Amount (EUR)
+              <input type="number" name="amount" min="1" step="0.01" value="380" />
+            </label>
+            <button type="submit">Create draft</button>
+          </form>
+
+          <div id="actionsList" class="list-grid"></div>
+        </section>
+
+        <section class="panel" id="panel-accounts" data-tab="accounts">
+          <div class="panel-head">
+            <h3>Connected providers</h3>
+            <p>Manage account rails and sync continuity.</p>
+          </div>
+
+          <form id="providerConnectForm" class="stack-form compact">
+            <label>
+              Provider name
+              <input type="text" name="providerName" value="sandbox_primary" />
+            </label>
+            <label>
+              Domain
+              <select name="domain">
+                <option value="aggregation" selected>Aggregation</option>
+                <option value="payments">Payments</option>
+                <option value="investing">Investing</option>
+                <option value="tax_submission">Tax submission</option>
+              </select>
+            </label>
+            <button type="submit">Connect provider</button>
+          </form>
+
+          <div class="inline-actions">
+            <button id="syncAllBtn" type="button">Run full sync</button>
+            <button id="refreshAccountsBtn" type="button" class="ghost">Refresh</button>
+          </div>
+
+          <div id="accountsList" class="list-grid"></div>
+          <div id="connectionsList" class="list-grid"></div>
+        </section>
+
+        <section class="panel" id="panel-rules" data-tab="rules">
+          <div class="panel-head">
+            <h3>Rules & safety</h3>
+            <p>Set limits and guardrails before execution.</p>
+          </div>
+
+          <form id="ruleForm" class="stack-form">
+            <label>
+              Daily action limit (EUR)
+              <input type="number" name="dailyAmountLimit" value="1500" />
+            </label>
+            <label>
+              Max single action (EUR)
+              <input type="number" name="maxSingleAction" value="800" />
+            </label>
+            <label>
+              Blocked categories (comma separated)
+              <input type="text" name="blockedCategories" value="gambling" />
+            </label>
+            <label class="toggle-line">
+              <input type="checkbox" name="anomalyDetectionEnabled" checked />
+              Enable anomaly detection
+            </label>
+            <label class="toggle-line">
+              <input type="checkbox" name="weeklyPlanningEnabled" checked />
+              Enable weekly planning loop
+            </label>
+            <button type="submit">Save safety rule</button>
+          </form>
+
+          <div id="rulesList" class="list-grid"></div>
+        </section>
+
+        <section class="panel" id="panel-audit" data-tab="audit">
+          <div class="panel-head">
+            <h3>Audit trace</h3>
+            <p>See recommendation, approval, dispatch, and outcome history.</p>
+          </div>
+          <div id="auditIntegrity" class="list-grid"></div>
+          <div id="auditList" class="list-grid"></div>
+        </section>
+      </section>
+
+      <nav class="bottom-nav" id="tabbar" aria-label="Primary">
+        <button class="active" data-tab="today" type="button">Today</button>
+        <button data-tab="actions" type="button">Actions</button>
+        <button data-tab="accounts" type="button">Accounts</button>
+        <button data-tab="rules" type="button">Rules</button>
+        <button data-tab="audit" type="button">Audit</button>
+      </nav>
+    </main>
+
+    <script src="/static/app.js?v=20260308c" type="module"></script>
+  </body>
+</html>
